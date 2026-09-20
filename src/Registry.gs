@@ -72,8 +72,6 @@ function renameFlagFiller(payload) {
     const mainId = normalizeId_(payload.mainId);
     const flagId = normalizeId_(payload.flagId);
     const removalCode = String(payload.removalCode || '').trim().toUpperCase();
-    const newMainName = cleanName_(payload.mainName);
-    const newFlagName = cleanName_(payload.flagName);
     const language = normalizeLanguage_(payload.language);
 
     if (!removalCode) throw new Error('REMOVAL_CODE_REQUIRED');
@@ -98,6 +96,13 @@ function renameFlagFiller(payload) {
 
       const oldMainName = String(row[2]);
       const oldFlagName = String(row[4]);
+      const requestedMainName = String(payload.mainName || '').trim();
+      const requestedFlagName = String(payload.flagName || '').trim();
+
+      if (!requestedMainName && !requestedFlagName) throw new Error('NO_NAME_CHANGE');
+
+      const newMainName = requestedMainName ? cleanName_(requestedMainName) : oldMainName;
+      const newFlagName = requestedFlagName ? cleanName_(requestedFlagName) : oldFlagName;
 
       if (oldMainName === newMainName && oldFlagName === newFlagName) {
         throw new Error('NO_NAME_CHANGE');
@@ -108,26 +113,13 @@ function renameFlagFiller(payload) {
       sheet.getRange(i + 1, 5).setValue(newFlagName);
       sheet.getRange(i + 1, 11).setValue(now);
 
-      const details =
-        'Main: "' + oldMainName + '" -> "' + newMainName +
-        '"; Flag: "' + oldFlagName + '" -> "' + newFlagName + '"';
+      const changes = [];
+      if (oldMainName !== newMainName) changes.push('Main: "' + oldMainName + '" -> "' + newMainName + '"');
+      if (oldFlagName !== newFlagName) changes.push('Flag: "' + oldFlagName + '" -> "' + newFlagName + '"');
 
-      logChange_(
-        'RENAME',
-        row[0],
-        mainId,
-        newMainName,
-        flagId,
-        newFlagName,
-        language,
-        details
-      );
+      logChange_('RENAME', row[0], mainId, newMainName, flagId, newFlagName, language, changes.join('; '));
 
-      return {
-        ok: true,
-        mainName: newMainName,
-        flagName: newFlagName
-      };
+      return { ok: true, mainName: newMainName, flagName: newFlagName };
     }
 
     throw new Error('REGISTRATION_NOT_FOUND');

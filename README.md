@@ -20,4 +20,7 @@ Google Apps Script Web App -> private Google Sheet
 This public repository must never contain player data, removal codes, spreadsheet IDs, credentials, or secrets.
 
 ## Current version
-v0.1.1 - Foundation + Rename
+v0.2.0 - Kingdom UI
+
+## Asset
+`assets/kd3903-banner.gif` is loaded by the Web App from this public GitHub repository.

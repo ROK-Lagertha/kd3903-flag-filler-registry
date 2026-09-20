@@ -5,103 +5,69 @@
   <?!= include('Styles'); ?>
 </head>
 <body>
-  <main class="shell">
-    <header class="hero">
-      <div class="badge">KINGDOM 3903</div>
-      <h1>Flag Filler Registry</h1>
-      <p id="subtitle"></p>
-
-      <label class="language-label" for="language" data-i18n="language">Language</label>
-      <select id="language"></select>
-    </header>
-
-    <section id="home" class="card">
-      <p class="rule" data-i18n="rule"></p>
-      <button class="primary" onclick="showView('register')">
-        <span class="button-icon">＋</span>
-        <span data-i18n="register">Register Flag Filler</span>
-      </button>
-      <button class="secondary" onclick="showView('rename')">
-        <span class="button-icon">✎</span>
-        <span data-i18n="rename">Rename</span>
-      </button>
-      <button class="danger" onclick="showView('remove')">
-        <span class="button-icon">−</span>
-        <span data-i18n="remove">Remove Flag Filler</span>
-      </button>
+  <div class="ember-layer"></div>
+  <main class="page-shell">
+    <section class="hero">
+      <img id="heroBanner" class="hero-banner" alt="Kingdom 3903">
+      <div class="hero-overlay">
+        <div class="topbar">
+          <span class="kingdom-chip">♛ KD 3903</span>
+          <select id="language" aria-label="Language"></select>
+        </div>
+        <div class="hero-title">
+          <h1>KD3903</h1>
+          <div class="gold-rule"></div>
+          <h2>FLAG FILLER REGISTRY</h2>
+          <p data-i18n="motto">ONE KINGDOM. ONE FAMILY. NO DRAMA.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="registerView" class="card hidden">
-      <h2 data-i18n="register">Register Flag Filler</h2>
-
-      <label data-i18n="mainId">Main Governor ID</label>
-      <input id="mainId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="mainName">Main Governor Name</label>
-      <input id="mainName" maxlength="80" autocomplete="off">
-
-      <label data-i18n="flagId">Flag Filler Governor ID</label>
-      <input id="flagId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="flagName">Flag Filler Name</label>
-      <input id="flagName" maxlength="80" autocomplete="off">
-
-      <button id="registerButton" class="primary" onclick="submitRegistration()" data-i18n="submit">
-        Register
-      </button>
-      <button class="ghost" onclick="showView('home')" data-i18n="back">Back</button>
+    <section class="intro">
+      <p data-i18n="subtitle"></p>
     </section>
 
+    <section class="registry-grid">
+      <article class="action-card">
+        <div class="card-icon">⚑</div>
+        <h3 data-i18n="register">REGISTER</h3>
+        <p data-i18n="registerInfo"></p>
+        <label data-i18n="mainId"></label><input id="mainId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="mainName"></label><input id="mainName" maxlength="80" autocomplete="off">
+        <label data-i18n="flagId"></label><input id="flagId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="flagName"></label><input id="flagName" maxlength="80" autocomplete="off">
+        <button id="registerButton" class="gold-button" onclick="submitRegistration()">⚑ <span data-i18n="registerButton">REGISTER</span></button>
+      </article>
 
-    <section id="renameView" class="card hidden">
-      <h2 data-i18n="rename">Rename</h2>
-      <p class="rule" data-i18n="renameInfo"></p>
+      <article class="action-card">
+        <div class="card-icon">✎</div>
+        <h3 data-i18n="rename">RENAME</h3>
+        <p data-i18n="renameInfo"></p>
+        <label data-i18n="mainId"></label><input id="renameMainId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="flagId"></label><input id="renameFlagId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="removalCode"></label><input id="renameRemovalCode" autocomplete="off">
+        <label data-i18n="newMainName"></label><input id="renameMainName" maxlength="80" autocomplete="off">
+        <label data-i18n="newFlagName"></label><input id="renameFlagName" maxlength="80" autocomplete="off">
+        <button id="renameButton" class="gold-button" onclick="submitRename()">✎ <span data-i18n="renameButton">UPDATE NAMES</span></button>
+      </article>
 
-      <label data-i18n="mainId">Main Governor ID</label>
-      <input id="renameMainId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="flagId">Flag Filler Governor ID</label>
-      <input id="renameFlagId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="removalCode">Removal Code</label>
-      <input id="renameRemovalCode" autocomplete="off">
-
-      <label data-i18n="newMainName">New Main Governor Name</label>
-      <input id="renameMainName" maxlength="80" autocomplete="off">
-
-      <label data-i18n="newFlagName">New Flag Filler Name</label>
-      <input id="renameFlagName" maxlength="80" autocomplete="off">
-
-      <button id="renameButton" class="secondary" onclick="submitRename()" data-i18n="confirmRename">
-        Save Names
-      </button>
-      <button class="ghost" onclick="showView('home')" data-i18n="back">Back</button>
+      <article class="action-card">
+        <div class="card-icon">♜</div>
+        <h3 data-i18n="remove">REMOVE</h3>
+        <p data-i18n="removeInfo"></p>
+        <label data-i18n="mainId"></label><input id="removeMainId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="flagId"></label><input id="removeFlagId" inputmode="numeric" autocomplete="off">
+        <label data-i18n="removalCode"></label><input id="removalCode" autocomplete="off">
+        <button id="removeButton" class="gold-button danger-gold" onclick="submitRemoval()">♜ <span data-i18n="removeButton">REMOVE</span></button>
+      </article>
     </section>
 
-    <section id="removeView" class="card hidden">
-      <h2 data-i18n="remove">Remove Flag Filler</h2>
-      <p class="warning" data-i18n="removeWarning"></p>
+    <section id="result" class="result-panel hidden"></section>
 
-      <label data-i18n="mainId">Main Governor ID</label>
-      <input id="removeMainId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="flagId">Flag Filler Governor ID</label>
-      <input id="removeFlagId" inputmode="numeric" autocomplete="off">
-
-      <label data-i18n="removalCode">Removal Code</label>
-      <input id="removalCode" autocomplete="off">
-
-      <button id="removeButton" class="danger" onclick="submitRemoval()" data-i18n="confirmRemove">
-        Confirm Removal
-      </button>
-      <button class="ghost" onclick="showView('home')" data-i18n="back">Back</button>
-    </section>
-
-    <section id="result" class="card hidden"></section>
-
-    <footer>3903 • Flag Filler Registry</footer>
+    <footer>
+      <span>♟ KD3903</span><span>♜ FAIR PLAY</span><span>♥ STRONGER TOGETHER</span><span>♛ INTERNATIONAL FAMILY</span>
+    </footer>
   </main>
-
   <?!= include('JavaScript'); ?>
 </body>
 </html>
