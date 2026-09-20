@@ -20,7 +20,16 @@ Google Apps Script Web App -> private Google Sheet
 This public repository must never contain player data, registry codes, spreadsheet IDs, credentials, or secrets.
 
 ## Current version
-v0.2.2 - Ornate Kingdom UI + Registry Code
+v0.2.5.1 Pre-Live - FAQ Hotfix
 
 ## Asset
 `assets/kd3903-banner.gif` is loaded by the Web App from this public GitHub repository.
+
+## Languages
+English, German, Russian, Turkish, French, Bahasa Melayu.
+
+## v0.2.5
+Adds a dedicated in-app FAQ view, Death Requirements warning, and localized FAQ navigation.
+
+### v0.2.5.1
+Fixes FAQ navigation/localization binding and Turkish/French translation mapping.

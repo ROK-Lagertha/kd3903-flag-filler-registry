@@ -11,6 +11,7 @@
       <img id="heroBanner" class="hero-banner" alt="Kingdom 3903">
       <div class="hero-overlay">
         <div class="topbar">
+          <button id="faqNav" class="nav-link" type="button" onclick="showFaq()">? <span data-i18n="faqNav">FAQ & HELP</span></button>
           <span class="kingdom-chip">♛ KD 3903</span>
           <select id="language" aria-label="Language"></select>
         </div>
@@ -23,6 +24,7 @@
       </div>
     </section>
 
+    <div id="registryView">
     <section class="intro">
       <p data-i18n="subtitle"></p>
     </section>
@@ -63,9 +65,37 @@
     </section>
 
     <section id="result" class="result-panel hidden"></section>
+    </div>
+
+    <section id="faqView" class="faq-view hidden">
+      <div class="faq-toolbar">
+        <button class="back-link nav-control" type="button" onclick="showRegistry()">← <span data-i18n="backRegistry">BACK TO REGISTRY</span></button>
+      </div>
+      <div class="faq-heading">
+        <div class="faq-kicker">KD3903</div>
+        <h2 data-i18n="faqTitle">FAQ & HELP</h2>
+        <p data-i18n="faqSubtitle"></p>
+      </div>
+
+      <div class="faq-warning">
+        <strong data-i18n="faqWarningTitle">⚔ FLAG FILLER ≠ FREE FARM</strong>
+        <p data-i18n="faqWarningText"></p>
+      </div>
+
+      <div id="faqAccordion" class="faq-accordion"></div>
+
+      <div class="support-card">
+        <div class="support-icon">♛</div>
+        <div>
+          <strong data-i18n="supportTitle">NEED HELP?</strong>
+          <p><span data-i18n="supportText">If you have problems with the Flag Filler Registry, please contact</span> <b>义Lagertha义</b>.</p>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <span>♟ KD3903</span><span>♜ FAIR PLAY</span><span>♥ STRONGER TOGETHER</span><span>♛ INTERNATIONAL FAMILY</span>
+      <a class="discord-link" href="https://discord.gg/kingdom3903" target="_blank" rel="noopener noreferrer">◈ <span data-i18n="discord">JOIN OUR DISCORD</span></a>
     </footer>
   </main>
   <?!= include('JavaScript'); ?>
