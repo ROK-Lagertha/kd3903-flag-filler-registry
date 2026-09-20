@@ -8,8 +8,6 @@ The registry allows KD3903 players to register one approved CH25 Flag Filler for
 
 ## 🌐 Live Registry
 
-**https://kingdom3903.s.gy/flagfiller3903**
-
 The public WebApp is designed for desktop and mobile use. English is used on first load, and players can switch languages directly in the interface.
 
 ## ✨ Features
@@ -196,20 +194,6 @@ The short public KD3903 URL redirects players to the current production deployme
 - Registry Code is required for Rename and Remove
 - Historical records are retained after removal
 - Registration does not override KD3903 contribution or Death Requirements
-
-## 🛟 Support
-
-Players who lose their Registry Code or experience problems with the WebApp should contact:
-
-**义Lagertha义**
-
-Please do not create duplicate registrations if a Registry Code has been lost.
-
-## 💬 KD3903 Discord
-
-Official Kingdom 3903 Discord:
-
-**https://discord.gg/kingdom3903**
 
 ## 📦 Current Release
 
