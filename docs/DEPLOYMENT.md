@@ -48,7 +48,7 @@ Required tests:
 5. Rename with correct IDs + code -> names update, IDs stay unchanged.
 6. Rename with wrong code -> rejected.
 7. Verify RENAME appears in CHANGE_LOG.
-8. Remove with wrong Removal Code -> rejected.
+8. Remove with wrong Registry Code -> rejected.
 9. Remove with correct code -> success.
 10. Verify removed record disappears from ACTIVE_FLAG_FILLERS.
 11. Re-register Main A with a new Flag after removal -> success.
@@ -74,7 +74,7 @@ The Web App URL can then be posted on the KD3903 Discord.
 Never commit:
 - Spreadsheet ID
 - player records
-- Removal Codes
+- Registry Codes
 - credentials
 - API keys
 - private exports
