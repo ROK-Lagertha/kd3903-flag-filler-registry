@@ -1,0 +1,259 @@
+<script>
+const I18N = {
+  en: {
+    language: 'Language',
+    subtitle: 'Register your CH25 Flag Filler for DKP and Kingdom Cleanup protection.',
+    rule: 'Each player may register a maximum of one active CH25 Flag Filler.',
+    register: 'Register Flag Filler',
+    rename: 'Rename',
+    renameInfo: 'Governor IDs stay unchanged. Update the Main name, Flag Filler name, or both.',
+    newMainName: 'New Main Governor Name',
+    newFlagName: 'New Flag Filler Name',
+    confirmRename: 'Save Names',
+    renamed: 'Names updated successfully.',
+    remove: 'Remove Flag Filler',
+    mainId: 'Main Governor ID',
+    mainName: 'Main Governor Name',
+    flagId: 'Flag Filler Governor ID',
+    flagName: 'Flag Filler Name',
+    removalCode: 'Removal Code',
+    submit: 'Register',
+    back: 'Back',
+    confirmRemove: 'Confirm Removal',
+    removeWarning: 'After removal, this Flag Filler is no longer protected during DKP reviews or Kingdom Cleanup.',
+    success: 'Registration successful.',
+    saveCode: 'Save your Removal Code. You will need it to remove this registration later.',
+    removed: 'Flag Filler removed successfully.',
+    ok: 'OK'
+  },
+  de: {
+    language: 'Sprache',
+    subtitle: 'Registriere deinen CH25 Flag Filler für den Schutz bei DKP-Prüfungen und Kingdom Cleanup.',
+    rule: 'Jeder Spieler darf maximal einen aktiven CH25 Flag Filler registrieren.',
+    register: 'Flag Filler registrieren',
+    rename: 'Namen ändern',
+    renameInfo: 'Die Governor IDs bleiben unverändert. Ändere den Namen des Mains, des Flag Fillers oder beide.',
+    newMainName: 'Neuer Name Main',
+    newFlagName: 'Neuer Name Flag Filler',
+    confirmRename: 'Namen speichern',
+    renamed: 'Namen erfolgreich aktualisiert.',
+    remove: 'Flag Filler löschen',
+    mainId: 'Governor ID Main',
+    mainName: 'Name Main',
+    flagId: 'Governor ID Flag Filler',
+    flagName: 'Name Flag Filler',
+    removalCode: 'Löschcode',
+    submit: 'Registrieren',
+    back: 'Zurück',
+    confirmRemove: 'Löschung bestätigen',
+    removeWarning: 'Nach der Löschung ist dieser Flag Filler bei DKP-Prüfungen und Kingdom Cleanup nicht mehr geschützt.',
+    success: 'Registrierung erfolgreich.',
+    saveCode: 'Speichere deinen Löschcode. Du benötigst ihn, wenn du die Registrierung später löschen möchtest.',
+    removed: 'Flag Filler erfolgreich gelöscht.',
+    ok: 'OK'
+  },
+  ru: {
+    language: 'Язык',
+    subtitle: 'Зарегистрируйте CH25 Flag Filler для защиты при проверке DKP и очистке королевства.',
+    rule: 'Каждый игрок может зарегистрировать не более одного активного CH25 Flag Filler.',
+    register: 'Зарегистрировать Flag Filler',
+    rename: 'Изменить имена',
+    renameInfo: 'ID губернаторов не меняются. Измените имя основного аккаунта, Flag Filler или оба.',
+    newMainName: 'Новое имя основного губернатора',
+    newFlagName: 'Новое имя Flag Filler',
+    confirmRename: 'Сохранить имена',
+    renamed: 'Имена успешно обновлены.',
+    remove: 'Удалить Flag Filler',
+    mainId: 'ID основного губернатора',
+    mainName: 'Имя основного губернатора',
+    flagId: 'ID Flag Filler',
+    flagName: 'Имя Flag Filler',
+    removalCode: 'Код удаления',
+    submit: 'Зарегистрировать',
+    back: 'Назад',
+    confirmRemove: 'Подтвердить удаление',
+    removeWarning: 'После удаления этот Flag Filler больше не будет защищён при проверках DKP и очистке королевства.',
+    success: 'Регистрация выполнена.',
+    saveCode: 'Сохраните код удаления. Он понадобится для удаления регистрации.',
+    removed: 'Flag Filler успешно удалён.',
+    ok: 'OK'
+  },
+  tr: {
+    language: 'Dil',
+    subtitle: 'DKP ve Kingdom Cleanup koruması için CH25 Flag Filler hesabınızı kaydedin.',
+    rule: 'Her oyuncu en fazla bir aktif CH25 Flag Filler kaydedebilir.',
+    register: 'Flag Filler Kaydet',
+    rename: 'İsimleri Değiştir',
+    renameInfo: 'Governor ID değerleri değişmez. Ana hesabın, Flag Filler hesabının veya her ikisinin adını güncelleyin.',
+    newMainName: 'Yeni Ana Governor Adı',
+    newFlagName: 'Yeni Flag Filler Adı',
+    confirmRename: 'İsimleri Kaydet',
+    renamed: 'İsimler başarıyla güncellendi.',
+    remove: 'Flag Filler Sil',
+    mainId: 'Ana Governor ID',
+    mainName: 'Ana Governor Adı',
+    flagId: 'Flag Filler Governor ID',
+    flagName: 'Flag Filler Adı',
+    removalCode: 'Silme Kodu',
+    submit: 'Kaydet',
+    back: 'Geri',
+    confirmRemove: 'Silmeyi Onayla',
+    removeWarning: 'Silme işleminden sonra bu Flag Filler DKP kontrolleri ve Kingdom Cleanup sırasında artık korunmaz.',
+    success: 'Kayıt başarılı.',
+    saveCode: 'Silme kodunuzu saklayın. Kaydı daha sonra silmek için bu koda ihtiyacınız olacak.',
+    removed: 'Flag Filler başarıyla silindi.',
+    ok: 'Tamam'
+  }
+};
+
+let lang = 'en';
+
+function t(key) {
+  return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key;
+}
+
+function init() {
+  const select = document.getElementById('language');
+  [
+    ['en','English'],
+    ['de','Deutsch'],
+    ['ru','Русский'],
+    ['tr','Türkçe']
+  ].forEach(item => select.add(new Option(item[1], item[0])));
+
+  select.value = 'en';
+  select.onchange = () => {
+    lang = select.value;
+    renderLanguage();
+  };
+  renderLanguage();
+}
+
+function renderLanguage() {
+  document.getElementById('subtitle').textContent = t('subtitle');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
+}
+
+function showView(view) {
+  ['home','registerView','renameView','removeView','result'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+
+  const id =
+    view === 'register' ? 'registerView' :
+    view === 'rename' ? 'renameView' :
+    view === 'remove' ? 'removeView' :
+    view;
+
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function setBusy(buttonId, busy) {
+  const button = document.getElementById(buttonId);
+  if (button) button.disabled = busy;
+}
+
+function showResult(html) {
+  const result = document.getElementById('result');
+  result.innerHTML = html +
+    '<button class="ghost" onclick="showView(\'home\')">' + escapeHtml(t('ok')) + '</button>';
+  showView('result');
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function friendlyError(error) {
+  const code = String((error && error.message) || error || '');
+  const messages = {
+    MAIN_ALREADY_REGISTERED: 'This Main Governor already has an active Flag Filler.',
+    FLAG_ALREADY_REGISTERED: 'This Flag Filler is already registered.',
+    MAIN_AND_FLAG_MUST_DIFFER: 'Main Governor ID and Flag Filler ID must be different.',
+    INVALID_GOVERNOR_ID: 'Please enter valid numeric Governor IDs.',
+    INVALID_GOVERNOR_NAME: 'Please enter valid Governor names.',
+    INVALID_REMOVAL_CODE: 'The Removal Code is incorrect.',
+    REMOVAL_CODE_REQUIRED: 'A Removal Code is required.',
+    REGISTRATION_NOT_FOUND: 'No matching active registration was found.',
+    NO_NAME_CHANGE: 'Please change at least one Governor name.'
+  };
+  return messages[Object.keys(messages).find(k => code.includes(k))] || code;
+}
+
+function submitRegistration() {
+  setBusy('registerButton', true);
+
+  google.script.run
+    .withSuccessHandler(result => {
+      setBusy('registerButton', false);
+      showResult(
+        '<h2>✅ ' + escapeHtml(t('success')) + '</h2>' +
+        '<p>' + escapeHtml(t('saveCode')) + '</p>' +
+        '<code>' + escapeHtml(result.removalCode) + '</code>'
+      );
+    })
+    .withFailureHandler(error => {
+      setBusy('registerButton', false);
+      showResult('<h2>❌ Error</h2><p>' + escapeHtml(friendlyError(error)) + '</p>');
+    })
+    .registerFlagFiller({
+      mainId: document.getElementById('mainId').value,
+      mainName: document.getElementById('mainName').value,
+      flagId: document.getElementById('flagId').value,
+      flagName: document.getElementById('flagName').value,
+      language: lang
+    });
+}
+
+
+function submitRename() {
+  setBusy('renameButton', true);
+
+  google.script.run
+    .withSuccessHandler(() => {
+      setBusy('renameButton', false);
+      showResult('<h2>✅ ' + escapeHtml(t('renamed')) + '</h2>');
+    })
+    .withFailureHandler(error => {
+      setBusy('renameButton', false);
+      showResult('<h2>❌ Error</h2><p>' + escapeHtml(friendlyError(error)) + '</p>');
+    })
+    .renameFlagFiller({
+      mainId: document.getElementById('renameMainId').value,
+      flagId: document.getElementById('renameFlagId').value,
+      removalCode: document.getElementById('renameRemovalCode').value,
+      mainName: document.getElementById('renameMainName').value,
+      flagName: document.getElementById('renameFlagName').value,
+      language: lang
+    });
+}
+
+function submitRemoval() {
+  setBusy('removeButton', true);
+
+  google.script.run
+    .withSuccessHandler(() => {
+      setBusy('removeButton', false);
+      showResult('<h2>✅ ' + escapeHtml(t('removed')) + '</h2>');
+    })
+    .withFailureHandler(error => {
+      setBusy('removeButton', false);
+      showResult('<h2>❌ Error</h2><p>' + escapeHtml(friendlyError(error)) + '</p>');
+    })
+    .removeFlagFiller({
+      mainId: document.getElementById('removeMainId').value,
+      flagId: document.getElementById('removeFlagId').value,
+      removalCode: document.getElementById('removalCode').value,
+      language: lang
+    });
+}
+
+init();
+</script>
