@@ -1,8 +1,6 @@
 /**
  * KD3903 Flag Filler Registry - Cloudflare API bridge
- * Keeps the existing Registry.gs business logic as the source of truth.
- *
- * Script Properties required:
+ * Script Property required:
  *   CF_API_SECRET = same secret stored in Cloudflare as APPS_SCRIPT_API_SECRET
  */
 function doPost(e) {
@@ -17,6 +15,11 @@ function doPost(e) {
 
     const action = String(body.action || '').trim().toUpperCase();
     const payload = body.payload || {};
+
+    // Safe health check: no Registry.gs call and no Sheet access.
+    if (action === 'PING') {
+      return apiJson_({ ok: true, result: { status: 'PONG' } });
+    }
 
     let result;
     switch (action) {
