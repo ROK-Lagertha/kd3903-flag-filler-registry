@@ -117,7 +117,14 @@ function renameFlagFiller(payload) {
       if (oldMainName !== newMainName) changes.push('Main: "' + oldMainName + '" -> "' + newMainName + '"');
       if (oldFlagName !== newFlagName) changes.push('Flag: "' + oldFlagName + '" -> "' + newFlagName + '"');
 
-      logChange_('RENAME', row[0], mainId, newMainName, flagId, newFlagName, language, changes.join('; '));
+      // The registry update above is the authoritative write. Audit logging must not
+      // turn an already successful rename into a false error response.
+      try {
+        logChange_('RENAME', row[0], mainId, newMainName, flagId, newFlagName, language, changes.join('; '));
+      } catch (logErr) {
+        console.error('Rename audit log failed after successful registry update: ' +
+          String(logErr && logErr.stack ? logErr.stack : logErr));
+      }
 
       return { ok: true, mainName: newMainName, flagName: newFlagName };
     }

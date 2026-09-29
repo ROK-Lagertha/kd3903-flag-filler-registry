@@ -51,11 +51,15 @@ function apiPublicError_(err) {
 
   // Preserve only known business errors that the frontend can safely translate.
   const safeCodes = [
-    'ALREADY_REGISTERED',
     'MAIN_ALREADY_REGISTERED',
     'FLAG_ALREADY_REGISTERED',
-    'NOT_FOUND',
+    'MAIN_AND_FLAG_MUST_DIFFER',
+    'INVALID_GOVERNOR_ID',
+    'INVALID_GOVERNOR_NAME',
+    'REMOVAL_CODE_REQUIRED',
     'INVALID_REMOVAL_CODE',
+    'REGISTRATION_NOT_FOUND',
+    'NO_NAME_CHANGE',
     'INVALID_REQUEST'
   ];
 
