@@ -11,9 +11,10 @@
   <div class="embers" aria-hidden="true"></div>
   <header class="topbar">
     <div class="topbar-controls">
-      <div class="language-control">
-        <span class="language-icon" aria-hidden="true">🌐</span>
-        <select id="language" aria-label="Language"></select>
+      <div class="language-control compact-language">
+        <button class="language-button" id="languageBtn" type="button" aria-expanded="false" aria-controls="languageMenu" aria-label="Language">🇬🇧</button>
+        <div class="language-menu hidden" id="languageMenu" role="menu" aria-label="Language selection"></div>
+        <select id="language" class="language-native-select" aria-label="Language" tabindex="-1"></select>
       </div>
       <div class="menu-wrap">
         <button class="nav-btn menu-button" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainMenu">☰ <span id="menuButtonLabel">MENU</span></button>
@@ -99,5 +100,6 @@
   <script src="/app.js"></script>
   <script src="/card-accordion.js"></script>
   <script src="/menu.js"></script>
+  <script src="/language-picker.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+(() => {
+const L=[["en","🇬🇧","English"],["de","🇩🇪","Deutsch"],["ru","🇷🇺","Русский"],["tr","🇹🇷","Türkçe"],["fr","🇫🇷","Français"],["ms","🇲🇾","Bahasa Melayu"],["fi","🇫🇮","Suomi"],["uk","🇺🇦","Українська"],["uz","🇺🇿","O‘zbekcha"],["id","🇮🇩","Bahasa Indonesia"]];
+const s=document.getElementById("language"),b=document.getElementById("languageBtn"),m=document.getElementById("languageMenu");if(!s||!b||!m)return;
+const close=()=>{m.classList.add("hidden");b.setAttribute("aria-expanded","false")};
+const sync=()=>{const x=L.find(v=>v[0]===(s.value||"en"))||L[0];b.textContent=x[1];b.title=x[2];b.setAttribute("aria-label","Language: "+x[2]);m.querySelectorAll("button").forEach(q=>{const a=q.dataset.lang===x[0];q.classList.toggle("is-active",a);q.setAttribute("aria-checked",String(a))})};
+L.forEach(([code,flag,name])=>{const q=document.createElement("button");q.type="button";q.dataset.lang=code;q.textContent=flag;q.title=name;q.setAttribute("aria-label",name);q.setAttribute("role","menuitemradio");q.onclick=()=>{if(s.value!==code){s.value=code;s.dispatchEvent(new Event("change",{bubbles:true}))}sync();close();b.focus()};m.appendChild(q)});
+b.onclick=e=>{e.stopPropagation();const o=m.classList.contains("hidden");document.getElementById("mainMenu")?.classList.add("hidden");document.getElementById("menuBtn")?.setAttribute("aria-expanded","false");m.classList.toggle("hidden",!o);b.setAttribute("aria-expanded",String(o))};
+s.addEventListener("change",sync);document.addEventListener("click",e=>{if(!e.target.closest(".compact-language"))close()});document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});sync();
+})();
