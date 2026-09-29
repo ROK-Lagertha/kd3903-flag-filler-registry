@@ -15,7 +15,15 @@
         <span class="language-icon" aria-hidden="true">🌐</span>
         <select id="language" aria-label="Language"></select>
       </div>
-      <button class="nav-btn" id="faqBtn" type="button">? <span data-i18n="faqNav">FAQ & HELP</span></button>
+      <div class="menu-wrap">
+        <button class="nav-btn menu-button" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainMenu">☰ <span id="menuButtonLabel">MENU</span></button>
+        <nav class="main-menu hidden" id="mainMenu" aria-label="Registry menu">
+          <button type="button" data-view="faq"><span>?</span><b id="menuFaqLabel">FAQ</b></button>
+          <button type="button" data-view="about"><span>♛</span><b id="menuAboutLabel">ABOUT FLAG FILLER REGISTRY</b></button>
+          <button type="button" data-view="how"><span>⚙</span><b id="menuHowLabel">HOW IT WORKS</b></button>
+        </nav>
+      </div>
+      <button class="hidden" id="faqBtn" type="button" tabindex="-1" aria-hidden="true"></button>
     </div>
   </header>
 
@@ -72,6 +80,9 @@
       <div id="faqAccordion" class="faq-accordion"></div>
       <div class="support-card"><span class="support-icon">♛</span><div><strong data-i18n="supportTitle">NEED HELP?</strong><p><span data-i18n="supportText"></span> <b>义Lagertha义</b>.</p></div></div>
     </section>
+
+    <section id="aboutView" class="info-view hidden"></section>
+    <section id="howView" class="info-view hidden"></section>
   </main>
 
   <footer class="site-footer">
@@ -87,5 +98,6 @@
   </footer>
   <script src="/app.js"></script>
   <script src="/card-accordion.js"></script>
+  <script src="/menu.js"></script>
 </body>
 </html>
