@@ -27,29 +27,51 @@
     <section id="registryView">
       <p class="intro" data-i18n="subtitle"></p>
       <div class="grid">
-        <article class="card"><div class="icon">⚑</div><h2 data-i18n="register">REGISTER</h2><p data-i18n="registerInfo"></p><button type="button" disabled data-i18n="apiPending">API CONNECTION FOLLOWS</button></article>
-        <article class="card"><div class="icon">✎</div><h2 data-i18n="rename">RENAME</h2><p data-i18n="renameInfo"></p><button type="button" disabled data-i18n="apiPending">API CONNECTION FOLLOWS</button></article>
-        <article class="card"><div class="icon">♜</div><h2 data-i18n="remove">REMOVE</h2><p data-i18n="removeInfo"></p><button type="button" disabled data-i18n="apiPending">API CONNECTION FOLLOWS</button></article>
+        <article class="card">
+          <div class="icon">⚑</div><h2 data-i18n="register">REGISTER</h2><p data-i18n="registerInfo"></p>
+          <div class="form-fields">
+            <label for="mainId" data-i18n="mainId"></label><input id="mainId" inputmode="numeric" autocomplete="off">
+            <label for="mainName" data-i18n="mainName"></label><input id="mainName" maxlength="80" autocomplete="off">
+            <label for="flagId" data-i18n="flagId"></label><input id="flagId" inputmode="numeric" autocomplete="off">
+            <label for="flagName" data-i18n="flagName"></label><input id="flagName" maxlength="80" autocomplete="off">
+          </div>
+          <button id="registerButton" class="action-button" type="button"><span>⚑</span> <span data-i18n="registerButton">REGISTER</span></button>
+        </article>
+
+        <article class="card">
+          <div class="icon">✎</div><h2 data-i18n="rename">RENAME</h2><p data-i18n="renameInfo"></p>
+          <div class="form-fields">
+            <label for="renameMainId" data-i18n="mainId"></label><input id="renameMainId" inputmode="numeric" autocomplete="off">
+            <label for="renameFlagId" data-i18n="flagId"></label><input id="renameFlagId" inputmode="numeric" autocomplete="off">
+            <label for="renameRemovalCode" data-i18n="removalCode"></label><input id="renameRemovalCode" autocomplete="off">
+            <label for="renameMainName" data-i18n="newMainName"></label><input id="renameMainName" maxlength="80" autocomplete="off">
+            <label for="renameFlagName" data-i18n="newFlagName"></label><input id="renameFlagName" maxlength="80" autocomplete="off">
+          </div>
+          <button id="renameButton" class="action-button" type="button"><span>✎</span> <span data-i18n="renameButton">UPDATE NAMES</span></button>
+        </article>
+
+        <article class="card">
+          <div class="icon">♜</div><h2 data-i18n="remove">REMOVE</h2><p data-i18n="removeInfo"></p>
+          <div class="form-fields">
+            <label for="removeMainId" data-i18n="mainId"></label><input id="removeMainId" inputmode="numeric" autocomplete="off">
+            <label for="removeFlagId" data-i18n="flagId"></label><input id="removeFlagId" inputmode="numeric" autocomplete="off">
+            <label for="removalCode" data-i18n="removalCode"></label><input id="removalCode" autocomplete="off">
+          </div>
+          <button id="removeButton" class="action-button danger" type="button"><span>♜</span> <span data-i18n="removeButton">REMOVE</span></button>
+        </article>
       </div>
-      <div class="phase-note">CLOUDFLARE PREVIEW · FRONTEND MIGRATION · GOOGLE DATA REMAINS UNCHANGED</div>
+      <section id="result" class="result-panel hidden" aria-live="polite"></section>
+      <div class="phase-note">CLOUDFLARE PREVIEW · SECURE REGISTRY API · GOOGLE SHEETS REMAINS SOURCE OF TRUTH</div>
     </section>
 
     <section id="faqView" class="hidden">
       <button class="nav-btn" id="backBtn" type="button">← <span data-i18n="backRegistry">BACK TO REGISTRY</span></button>
-      <div class="faq-head">
-        <div class="eyebrow">KD3903</div>
-        <h2 data-i18n="faqTitle">FAQ & HELP</h2>
-        <p data-i18n="faqSubtitle"></p>
-      </div>
-      <div class="warning">
-        <strong data-i18n="faqWarningTitle">⚔ FLAG FILLER ≠ FREE FARM</strong>
-        <p data-i18n="faqWarningText"></p>
-      </div>
+      <div class="faq-head"><div class="eyebrow">KD3903</div><h2 data-i18n="faqTitle">FAQ & HELP</h2><p data-i18n="faqSubtitle"></p></div>
+      <div class="warning"><strong data-i18n="faqWarningTitle">⚔ FLAG FILLER ≠ FREE FARM</strong><p data-i18n="faqWarningText"></p></div>
       <div id="faqAccordion" class="faq-accordion"></div>
       <div class="support-card"><span class="support-icon">♛</span><div><strong data-i18n="supportTitle">NEED HELP?</strong><p><span data-i18n="supportText"></span> <b>义Lagertha义</b>.</p></div></div>
     </section>
   </main>
-
   <footer><span>♟ KD3903</span><span>♜ FAIR PLAY</span><span>♥ STRONGER TOGETHER</span><span>♛ INTERNATIONAL FAMILY</span></footer>
   <script src="/app.js"></script>
 </body>
