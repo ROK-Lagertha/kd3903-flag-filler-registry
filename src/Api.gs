@@ -5,7 +5,10 @@
  */
 function doPost(e) {
   try {
-    const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    const raw = (e && e.postData && e.postData.contents) || '';
+    if (!raw || raw.length > 12000) return apiJson_({ ok: false, error: 'INVALID_REQUEST' });
+
+    const body = JSON.parse(raw);
     const secret = PropertiesService.getScriptProperties().getProperty('CF_API_SECRET');
 
     if (!secret) return apiJson_({ ok: false, error: 'API_NOT_CONFIGURED' });
@@ -16,7 +19,6 @@ function doPost(e) {
     const action = String(body.action || '').trim().toUpperCase();
     const payload = body.payload || {};
 
-    // Safe health check: no Registry.gs call and no Sheet access.
     if (action === 'PING') {
       return apiJson_({ ok: true, result: { status: 'PONG' } });
     }
@@ -38,11 +40,29 @@ function doPost(e) {
 
     return apiJson_({ ok: true, result: result || { ok: true } });
   } catch (err) {
-    return apiJson_({
-      ok: false,
-      error: String(err && err.message ? err.message : err || 'UNKNOWN_ERROR')
-    });
+    // Never expose Apps Script, Sheet or implementation details to the public API.
+    console.error('Registry API error: ' + String(err && err.stack ? err.stack : err));
+    return apiJson_({ ok: false, error: apiPublicError_(err) });
   }
+}
+
+function apiPublicError_(err) {
+  const message = String(err && err.message ? err.message : err || '').toUpperCase();
+
+  // Preserve only known business errors that the frontend can safely translate.
+  const safeCodes = [
+    'ALREADY_REGISTERED',
+    'MAIN_ALREADY_REGISTERED',
+    'FLAG_ALREADY_REGISTERED',
+    'NOT_FOUND',
+    'INVALID_REMOVAL_CODE',
+    'INVALID_REQUEST'
+  ];
+
+  for (let i = 0; i < safeCodes.length; i++) {
+    if (message.indexOf(safeCodes[i]) !== -1) return safeCodes[i];
+  }
+  return 'REQUEST_FAILED';
 }
 
 function apiJson_(data) {
