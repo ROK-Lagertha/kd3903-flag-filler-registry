@@ -536,7 +536,7 @@ The current production baseline includes:
 
 **Fair Play • Stronger Together • International Family**
 
-Built specifically for the players and leadership of **KD3903**.
+Built for the players and leadership of **KD3903**.
 
 This project is a kingdom administration tool for KD3903 and is not
 intended as a general multi-kingdom SaaS platform.
