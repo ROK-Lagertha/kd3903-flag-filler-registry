@@ -28,7 +28,7 @@ The current release includes:
 -   Register, Rename and Remove workflows
 -   Registry Code verification
 -   10 interface languages
--   FAQ & Help section
+-   Main menu with FAQ, About Flag Filler Registry and How It Works
 -   Responsive desktop, tablet and mobile layouts
 -   Mobile accordion for Registry actions
 -   Optimized production artwork
@@ -207,7 +207,7 @@ have to be duplicated inside the FAQ.
 -   Kingdom administration / registry identity
 -   Dedicated Flag Filler Registry hero artwork
 -   KD3903 Cappy footer artwork
--   Compact language and FAQ navigation
+-   Compact flag-based language picker and main menu navigation
 
 ### Desktop
 
@@ -398,7 +398,8 @@ Cloudflare/Wrangler deployment workflow.
 After deployment, verify:
 
 1.  The frontend loads correctly on desktop and mobile.
-2.  The language selector and FAQ work.
+2.  The language selector and main menu (FAQ / About / How It Works)
+    work.
 3.  `/api/health` returns a successful backend response.
 4.  Register works with a valid test registration.
 5.  Rename works with the generated Registry Code.
@@ -478,10 +479,31 @@ Major migration milestones:
     tested
 -   **FFR-OP-012.1** --- Rename response / atomicity bug fixed and
     tested
--   **FFR-OP-013** --- Cloudflare deployment and production cutover
-    approved
--   **FFR-OP-014** --- Repository documentation updated for the final
-    Cloudflare architecture
+-   **FFR-OP-013** --- Cloudflare production workflows verified; final
+    cutover pending
+-   **FFR-OP-014** --- Repository documentation finalized for the
+    production architecture
+-   **FFR-OP-015** --- Main menu and information architecture
+    implemented and production-tested
+-   **FFR-OP-015.2** --- Compact flag-only language picker implemented
+    and tested
+-   **FFR-OP-016** --- Obsolete development-status notice removed from
+    the release source; Cloudflare deployment verification pending
+
+## 🧹 Final Release Cleanup
+
+The release source no longer includes the development-only footer/status
+notice:
+
+``` text
+CLOUDFLARE PREVIEW · SECURE REGISTRY API · GOOGLE SHEETS REMAINS SOURCE OF TRUTH
+```
+
+This text was useful during development but is not part of the intended
+player-facing production UI. At the time of this documentation update,
+Cloudflare build/deployment verification for this final cleanup is still
+pending. The last known successful production deployment remains
+functional.
 
 ## 📦 Release Status
 
@@ -489,9 +511,11 @@ The previous Google Apps Script frontend release line reached
 **v0.3.2**.
 
 The current Cloudflare version represents the redesigned and
-security-hardened successor to that release line. It has completed
-functional testing for Register, Rename and Remove and has been approved
-for live use.
+security-hardened successor to that release line. Register, Rename and
+Remove have been verified successfully in production use, including the
+first official Flag Filler registration. The final release-source
+cleanup is complete; deployment verification of that cleanup remains
+pending.
 
 The current production baseline includes:
 
@@ -502,9 +526,11 @@ The current production baseline includes:
 -   Final responsive 3903 design
 -   Optimized artwork
 -   Mobile Registry accordion
--   Multilingual FAQ and interface
+-   Multilingual interface with FAQ, About and How It Works
 -   Security hardening
 -   Rename atomicity fix
+-   Compact flag-only 10-language picker
+-   Main menu with separated FAQ / About / How It Works content
 
 ## 👑 Kingdom 3903
 
